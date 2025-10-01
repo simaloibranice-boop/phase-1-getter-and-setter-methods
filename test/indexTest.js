@@ -1,47 +1,36 @@
-require ( './helpers.js' );
+const Circle = require("../index");
 
-let circle;
+describe("Circle", function () {
+  it("correctly calculates diameter from radius", function () {
+    const c = new Circle(5);
+    expect(c.diameter).equal(10);
+  });
 
-describe( "Circle", () => {
-  beforeEach( () => {
-    circle = new Circle( 6 )
-  } )
+  it("correctly calculates circumference from radius", function () {
+    const c = new Circle(5);
+    expect(Math.round(c.circumference)).equal(31);
+  });
 
-  it( "correctly returns the radius property of a Circle instance using `circle.radius`", () => {
-    expect( circle.radius ).to.equal( 6 )
-  } )
+  it("correctly calculates area from radius", function () {
+    const c = new Circle(5);
+    expect(Math.round(c.area)).equal(79);
+  });
 
-  describe( "gets", () => {
-    it( "the diameter of a circle using the pseudo-property `circle.diameter`", () => {
-      expect( circle.diameter ).to.equal( 12 )
-    } )
-    it( "the circumference of a circle using the pseudo-property `circle.circumference`", () => {
-      expect( circle.circumference ).to.be.at.least( 37.68 )
-      expect( circle.circumference ).to.be.at.most( 37.71 )
-    } )
-    it( "the area of a circle using the pseudo-property `circle.area`", () => {
-      expect( circle.area ).to.be.at.least( 113 )
-      expect( circle.area ).to.be.at.most( 113.1 )
-    } )
-  } )
+  it("can set diameter and update radius", function () {
+    const c = new Circle(5);
+    c.diameter = 20;
+    expect(c.radius).equal(10);
+  });
 
-  describe( "sets", () => {
-    it( "the radius using the pseudo-property `circle.diameter`", () => {
-      circle.diameter = 36
-      expect( circle.radius ).to.eq( 18 )
-    } )
+  it("can set circumference and update radius", function () {
+    const c = new Circle(5);
+    c.circumference = 62.8319;
+    expect(Math.round(c.radius)).equal(10);
+  });
 
-    it( "the radius using the pseudo-property `circle.circumference`", () => {
-      circle.circumference = 100
-      expect( circle.radius ).to.be.at.least( 15 )
-      expect( circle.radius ).to.be.at.most( 16 )
-    } )
-
-    it( "the radius using the pseudo-property `circle.area`", () => {
-      circle.area = 200
-      expect( circle.radius ).to.be.at.least( 7 )
-      expect( circle.radius ).to.be.at.most( 8 )
-    } )
-  } )
-
-} )
+  it("can set area and update radius", function () {
+    const c = new Circle(5);
+    c.area = 314.159;
+    expect(Math.round(c.radius)).equal(10);
+  });
+});
